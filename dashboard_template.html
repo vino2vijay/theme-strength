@@ -110,7 +110,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
 if (DATA) {
   const d = DATA;
   document.getElementById("asof").textContent =
-    `Session ${d.session} · prices as of ${d.data_time} (15-min delayed) · updated ${d.generated}`;
+    `Session ${d.session} · prices as of ${d.data_time === "close" ? "the close" : d.data_time + " (15-min delayed)"} · updated ${d.generated}`;
   const buys = d.themes.filter(t => t.action === "BUY WINDOW").length;
   document.getElementById("strip").innerHTML = `
     <span class="chip">SPY <b class="${cls(d.spy_chg)}">${pct(d.spy_chg)}</b></span>

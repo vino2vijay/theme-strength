@@ -17,7 +17,7 @@ Usage: python3 sector_strength.py
 import json
 import os
 import subprocess
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 BUY_RS, LEAD_RS, WEAK_RS = 2.0, 1.0, -1.0
@@ -100,8 +100,11 @@ for t in themes:
 themes.sort(key=lambda t: -t["rs"])
 leading = sum(t["rs"] >= LEAD_RS for t in themes)
 lagging = sum(t["rs"] <= WEAK_RS for t in themes)
-data = dict(session=session, generated=datetime.now(ny).strftime("%Y-%m-%d %H:%M ET"),
-            data_time=datetime.fromtimestamp(spy["time"], timezone.utc).astimezone(ny).strftime("%H:%M ET"),
+# Screener prices are ~15 min delayed; after the 16:00 close they are the closing prices
+now = datetime.now(ny)
+price_time = min(now - timedelta(minutes=15), now.replace(hour=16, minute=0, second=0, microsecond=0))
+data = dict(session=session, generated=now.strftime("%Y-%m-%d %H:%M ET"),
+            data_time=price_time.strftime("%H:%M ET") if price_time < now.replace(hour=16, minute=0, second=0, microsecond=0) else "close",
             spy_chg=round(spy["chg"], 2), spy_close=spy["close"], leading=leading, lagging=lagging,
             rules=dict(buy=BUY_RS, lead=LEAD_RS, weak=WEAK_RS), themes=themes)
 json.dump(data, open(os.path.join(HERE, "sector_data.json"), "w"), indent=1)
