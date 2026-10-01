@@ -2,10 +2,10 @@ name: Morning theme strength
 
 on:
   schedule:
-    # 10:05 ET in both daylight time (14:05 UTC) and standard time (15:05 UTC).
-    # The "check time" step skips whichever run isn't 10 AM in New York.
-    - cron: "5 14 * * 1-5"
-    - cron: "5 15 * * 1-5"
+    # 9:45 ET in both daylight time (13:45 UTC) and standard time (14:45 UTC).
+    # The "check time" step skips whichever run isn't the 9:45 run in New York.
+    - cron: "45 13 * * 1-5"
+    - cron: "45 14 * * 1-5"
   workflow_dispatch: {}   # "Run workflow" button for manual runs
 
 permissions:
@@ -31,9 +31,10 @@ jobs:
       - name: Check time (scheduled runs only)
         id: gate
         run: |
-          hour=$(TZ=America/New_York date +%H)
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "$hour" != "10" ]; then
-            echo "run=false" >> "$GITHUB_OUTPUT"; echo "Skipping: it is ${hour}:xx in New York, not 10 AM."
+          # Accept 9:40-10:39 New York time (GitHub can start scheduled runs late); the other cron lands at 8:45 or 10:45
+          hhmm=$((10#$(TZ=America/New_York date +%H%M)))
+          if [ "${{ github.event_name }}" = "schedule" ] && { [ "$hhmm" -lt 940 ] || [ "$hhmm" -ge 1040 ]; }; then
+            echo "run=false" >> "$GITHUB_OUTPUT"; echo "Skipping: it is $(TZ=America/New_York date +%H:%M) in New York, not the 9:45 run."
           else
             echo "run=true" >> "$GITHUB_OUTPUT"
           fi
@@ -46,6 +47,9 @@ jobs:
       - name: Score themes
         if: steps.gate.outputs.run == 'true'
         id: score
+        env:
+          ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
         run: |
           python sector_strength.py
           session=$(python -c "import json;print(json.load(open('sector_data.json'))['session'])")

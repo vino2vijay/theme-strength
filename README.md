@@ -9,7 +9,7 @@ publishes the dashboard to GitHub Pages, and sends a phone alert through ntfy.
 - `history.json` – one row of RS per session; drives the "Day" counter. Committed by the workflow.
 - `.github/workflows/theme-strength.yml` – the schedule.
 
-Data: TradingView screener (free, ~15 minutes delayed). A screen for ideas, not trading advice.
+Data: Alpaca real-time (IEX) via repository secrets ALPACA_KEY_ID / ALPACA_SECRET_KEY, with the free TradingView screener (~15 min delayed) as a backup. A screen for ideas, not trading advice.
 
 ## Manual run
 GitHub → Actions → "Morning theme strength" → Run workflow.

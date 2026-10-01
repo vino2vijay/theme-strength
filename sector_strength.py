@@ -10,7 +10,9 @@ For each theme in themes.json:
                  WEAK        RS <= WEAK_RS
                  QUIET       everything else
 
-Data: TradingView screener (free, ~15 min delayed). Run at 10:00 ET for a ~9:45 snapshot.
+Data: Alpaca market data snapshots (real-time IEX feed) when ALPACA_KEY_ID / ALPACA_SECRET_KEY are set;
+any symbol Alpaca can't price (or every symbol, without keys) falls back to the TradingView screener
+(free, ~15 min delayed).
 Outputs (next to this script): sector_data.json, summary.txt, dashboard.html
 Usage: python3 sector_strength.py
 """
@@ -44,10 +46,53 @@ def scan(names):
     return rows
 
 
+def parse_ts(s):
+    # Alpaca timestamps look like 2026-10-01T13:44:59.123456789Z
+    return datetime.fromisoformat(s.rstrip("Z")[:26] + "+00:00")
+
+
+def alpaca(names):
+    key, secret = os.environ.get("ALPACA_KEY_ID"), os.environ.get("ALPACA_SECRET_KEY")
+    if not key or not secret:
+        return {}
+    url = "https://data.alpaca.markets/v2/stocks/snapshots?feed=iex&symbols=" + ",".join(sorted(names))
+    res = subprocess.run(["curl", "-s", "-m", "60", url, "-H", f"APCA-API-KEY-ID: {key}",
+                          "-H", f"APCA-API-SECRET-KEY: {secret}"], capture_output=True, text=True)
+    try:
+        snaps = json.loads(res.stdout)
+    except json.JSONDecodeError:
+        print("Alpaca: unreadable response, using TradingView")
+        return {}
+    if not isinstance(snaps, dict) or "message" in snaps:
+        print("Alpaca error:", snaps.get("message") if isinstance(snaps, dict) else snaps)
+        return {}
+    rows = {}
+    for sym, s in snaps.items():
+        try:
+            last, day, prev = s["latestTrade"], s["dailyBar"], s["prevDailyBar"]
+            px = last["p"]
+            rows[sym] = dict(symbol=sym, close=px, chg=(px / prev["c"] - 1) * 100,
+                             chg_open=(px / day["o"] - 1) * 100, desc="",
+                             time=parse_ts(day["t"]).timestamp(), trade_time=parse_ts(last["t"]).timestamp())
+        except (KeyError, TypeError, ZeroDivisionError):
+            continue
+    return rows
+
+
 cfg = json.load(open(os.path.join(HERE, "themes.json")))
 bench = cfg["benchmark"]
 wanted = {bench} | {t["etf"] for t in cfg["themes"] if t["etf"]} | {n for t in cfg["themes"] for n in t["names"]}
-q = scan(wanted)
+q = alpaca(wanted)
+source = "alpaca" if bench in q else "tradingview"
+if source == "tradingview":
+    q = {}
+missing = wanted - set(q)
+if missing:
+    for name, row in scan(missing).items():
+        q[name] = row
+    if source == "alpaca":
+        print(f"Alpaca had no live price for {len(missing)} symbols; used TradingView for: {', '.join(sorted(missing))}")
+print(f"Data source: {source} ({len(q)} of {len(wanted)} symbols priced)")
 spy = q[bench]
 ny = ZoneInfo("America/New_York")
 session = datetime.fromtimestamp(spy["time"], timezone.utc).astimezone(ny).strftime("%Y-%m-%d")
@@ -100,11 +145,16 @@ for t in themes:
 themes.sort(key=lambda t: -t["rs"])
 leading = sum(t["rs"] >= LEAD_RS for t in themes)
 lagging = sum(t["rs"] <= WEAK_RS for t in themes)
-# Screener prices are ~15 min delayed; after the 16:00 close they are the closing prices
 now = datetime.now(ny)
-price_time = min(now - timedelta(minutes=15), now.replace(hour=16, minute=0, second=0, microsecond=0))
-data = dict(session=session, generated=now.strftime("%Y-%m-%d %H:%M ET"),
-            data_time=price_time.strftime("%H:%M ET") if price_time < now.replace(hour=16, minute=0, second=0, microsecond=0) else "close",
+close_time = now.replace(hour=16, minute=0, second=0, microsecond=0)
+if source == "alpaca":
+    # Real-time: the time of SPY's latest trade
+    price_time = datetime.fromtimestamp(spy["trade_time"], timezone.utc).astimezone(ny)
+else:
+    # Screener prices are ~15 min delayed; after the 16:00 close they are the closing prices
+    price_time = min(now - timedelta(minutes=15), close_time)
+data = dict(session=session, generated=now.strftime("%Y-%m-%d %H:%M ET"), source=source,
+            data_time=price_time.strftime("%H:%M ET") if price_time < close_time else "close",
             spy_chg=round(spy["chg"], 2), spy_close=spy["close"], leading=leading, lagging=lagging,
             rules=dict(buy=BUY_RS, lead=LEAD_RS, weak=WEAK_RS), themes=themes)
 json.dump(data, open(os.path.join(HERE, "sector_data.json"), "w"), indent=1)
