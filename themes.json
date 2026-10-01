@@ -3,7 +3,7 @@
   "themes": [
     {"theme": "PHOTONICS",      "etf": null,   "names": ["COHR", "CIEN", "LITE", "FN", "AAOI", "IPGP", "MKSI"]},
     {"theme": "CRYPTO BROKERS", "etf": null,   "names": ["COIN", "HOOD", "MSTR", "GLXY"]},
-    {"theme": "ENERGY",         "etf": "XLE",  "names": ["XOM", "CVX", "COP", "EOG", "SLB", "OXY"]},
+    {"theme": "ENERGY",         "etf": "XLE",  "names": ["XOM", "CVX", "COP", "EOG", "SLB", "OXY", "BE"]},
     {"theme": "AI DATACENTER",  "etf": null,   "names": ["VRT", "ETN", "NVT", "ANET", "SMCI", "DELL", "CRWV", "NBIS"]},
     {"theme": "SOFTWARE",       "etf": "IGV",  "names": ["MSFT", "ORCL", "CRM", "NOW", "ADBE", "INTU", "PLTR"]},
     {"theme": "BITCOIN",        "etf": "IBIT", "names": []},
