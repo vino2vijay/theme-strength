@@ -1,0 +1,148 @@
+<title>Theme Strength Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: a trading-desk board — status strip, then one ranked table with an RS bar per theme */
+:root {
+  --bg: #f3f5f4;
+  --panel: #ffffff;
+  --ink: #17201d;
+  --muted: #5d6b66;
+  --line: #d9e0dd;
+  --head: #1d2b33;
+  --head-ink: #e8eef0;
+  --up: #12805c;
+  --down: #c2412d;
+  --buy-bg: #12805c;
+  --buy-ink: #ffffff;
+  --lead-bg: #dff1e8;
+  --lead-ink: #0e6a4c;
+  --weak-bg: #c2412d;
+  --weak-ink: #ffffff;
+  --quiet-ink: #7b8984;
+  --bar-up: #2fa47a;
+  --bar-down: #d9654f;
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1517; --panel: #161f22; --ink: #e3eae7; --muted: #93a39d; --line: #26343a;
+    --head: #22323a; --head-ink: #e3eae7; --up: #45c493; --down: #f07a63;
+    --buy-bg: #1f9d70; --buy-ink: #ffffff; --lead-bg: #173a2d; --lead-ink: #6fd8ad;
+    --weak-bg: #b8402c; --weak-ink: #ffffff; --quiet-ink: #6f807a; --bar-up: #2f9a72; --bar-down: #c9563f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1517; --panel: #161f22; --ink: #e3eae7; --muted: #93a39d; --line: #26343a;
+  --head: #22323a; --head-ink: #e3eae7; --up: #45c493; --down: #f07a63;
+  --buy-bg: #1f9d70; --buy-ink: #ffffff; --lead-bg: #173a2d; --lead-ink: #6fd8ad;
+  --weak-bg: #b8402c; --weak-ink: #ffffff; --quiet-ink: #6f807a; --bar-up: #2f9a72; --bar-down: #c9563f;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 14px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 24px 16px 40px; display: grid; gap: 18px; }
+header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: 2.2rem; letter-spacing: .02em; margin: 0; line-height: 1; text-transform: uppercase; }
+.asof { color: var(--muted); font-size: .85rem; margin-top: 6px; }
+.strip { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--font-data); font-size: .8rem; padding: 6px 10px; border: 1px solid var(--line); background: var(--panel); border-radius: 4px; white-space: nowrap; }
+.chip b { font-weight: 600; }
+.up { color: var(--up); } .down { color: var(--down); }
+.board { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
+table { width: 100%; border-collapse: collapse; min-width: 640px; font-variant-numeric: tabular-nums; }
+th { background: var(--head); color: var(--head-ink); font-family: var(--font-display); font-weight: 600; font-size: .95rem; letter-spacing: .06em; text-transform: uppercase; text-align: left; padding: 10px 12px; }
+th.num, td.num { text-align: right; }
+td { padding: 9px 12px; border-top: 1px solid var(--line); vertical-align: middle; }
+td.theme { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; letter-spacing: .03em; }
+td.theme small { display: block; font-family: var(--font-body); font-weight: 400; font-size: .72rem; letter-spacing: 0; color: var(--muted); }
+tr.quiet td.theme { color: var(--quiet-ink); }
+.rs { display: grid; grid-template-columns: 4.6em 1fr; align-items: center; gap: 10px; font-family: var(--font-data); font-weight: 500; }
+.bar { position: relative; height: 8px; background: color-mix(in srgb, var(--line) 55%, transparent); border-radius: 2px; min-width: 90px; }
+.bar::before { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; width: 1px; background: var(--muted); opacity: .5; }
+.bar span { position: absolute; top: 0; bottom: 0; border-radius: 2px; }
+.mono { font-family: var(--font-data); }
+.best b { font-family: var(--font-data); font-weight: 600; }
+.best span { font-family: var(--font-data); font-size: .8rem; margin-left: 6px; }
+.pill { display: inline-block; min-width: 7.5em; text-align: center; font-family: var(--font-display); font-weight: 700; letter-spacing: .08em; font-size: .9rem; padding: 4px 10px; border-radius: 3px; }
+.pill.buy { background: var(--buy-bg); color: var(--buy-ink); }
+.pill.lead { background: var(--lead-bg); color: var(--lead-ink); }
+.pill.weak { background: var(--weak-bg); color: var(--weak-ink); }
+.pill.quiet { color: var(--quiet-ink); border: 1px solid var(--line); }
+details.names { margin-top: 4px; }
+details.names summary { cursor: pointer; color: var(--muted); font-size: .75rem; }
+details.names summary:focus-visible { outline: 2px solid var(--up); outline-offset: 2px; }
+details.names div { font-family: var(--font-data); font-size: .75rem; display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 4px; }
+.rules { color: var(--muted); font-size: .82rem; line-height: 1.55; max-width: 72ch; display: grid; gap: 4px; }
+.rules strong { color: var(--ink); font-weight: 600; }
+.empty { padding: 28px; color: var(--muted); }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Theme Strength Board</h1>
+      <div class="asof" id="asof">Waiting for the first morning run.</div>
+    </div>
+    <div class="strip" id="strip"></div>
+  </header>
+
+  <div class="board">
+    <table>
+      <thead>
+        <tr><th>Theme</th><th>RS vs SPY</th><th class="num">Theme %</th><th>Best name</th><th class="num">Day</th><th>Action</th></tr>
+      </thead>
+      <tbody id="rows"><tr><td colspan="6" class="empty">No data yet. The board fills in after the 10:00 AM ET run.</td></tr></tbody>
+    </table>
+  </div>
+
+  <div class="rules" id="rules"></div>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const pct = v => (v > 0 ? "+" : "") + v.toFixed(2) + "%";
+const cls = v => v > 0 ? "up" : v < 0 ? "down" : "";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+if (DATA) {
+  const d = DATA;
+  document.getElementById("asof").textContent =
+    `Session ${d.session} · prices as of ${d.data_time} (15-min delayed) · updated ${d.generated}`;
+  const buys = d.themes.filter(t => t.action === "BUY WINDOW").length;
+  document.getElementById("strip").innerHTML = `
+    <span class="chip">SPY <b class="${cls(d.spy_chg)}">${pct(d.spy_chg)}</b></span>
+    <span class="chip"><b class="up">${d.leading}</b> leading</span>
+    <span class="chip"><b class="down">${d.lagging}</b> lagging</span>
+    <span class="chip"><b>${buys}</b> buy window${buys === 1 ? "" : "s"}</span>`;
+
+  const maxAbs = Math.max(2, ...d.themes.map(t => Math.abs(t.rs)));
+  const pillCls = {"BUY WINDOW": "buy", "LEADING": "lead", "WEAK": "weak", "QUIET": "quiet"};
+  document.getElementById("rows").innerHTML = d.themes.map(t => {
+    const w = Math.min(50, Math.abs(t.rs) / maxAbs * 50);
+    const bar = t.rs >= 0
+      ? `<span style="left:50%;width:${w}%;background:var(--bar-up)"></span>`
+      : `<span style="right:50%;width:${w}%;background:var(--bar-down)"></span>`;
+    const names = t.members.length
+      ? `<details class="names"><summary>${t.members.length} names</summary><div>${t.members.map(m =>
+          `<span>${esc(m.name)} <span class="${cls(m.chg)}">${pct(m.chg)}</span></span>`).join("")}</div></details>` : "";
+    return `<tr class="${pillCls[t.action]}">
+      <td class="theme">${esc(t.theme)}<small>${t.etf ? esc(t.etf) : "basket of leaders"}</small>${names}</td>
+      <td><div class="rs"><span class="${cls(t.rs)}">${pct(t.rs)}</span><div class="bar">${bar}</div></div></td>
+      <td class="num mono ${cls(t.theme_chg)}">${pct(t.theme_chg)}</td>
+      <td class="best"><b>${esc(t.best)}</b><span class="${cls(t.best_chg)}">${pct(t.best_chg)}</span></td>
+      <td class="num mono">${t.day || "–"}</td>
+      <td><span class="pill ${pillCls[t.action]}">${t.action}</span></td>
+    </tr>`;
+  }).join("");
+
+  const r = d.rules;
+  document.getElementById("rules").innerHTML = `
+    <div><strong>RS vs SPY</strong> is the theme's % change today minus SPY's. Themes with an ETF use the ETF; the others use the average of their leader stocks.</div>
+    <div><strong>Day</strong> counts sessions in a row with RS of ${pct(r.lead)} or better.</div>
+    <div><strong>Buy window</strong>: RS ${pct(r.buy)} or better, on day 1 or 2, with the best name trading above today's open. <strong>Leading</strong>: RS ${pct(r.lead)} or better. <strong>Weak</strong>: RS ${pct(r.weak)} or worse. <strong>Quiet</strong>: everything in between.</div>
+    <div>A screen for ideas, not trading advice.</div>`;
+}
+</script>

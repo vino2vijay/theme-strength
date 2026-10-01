@@ -1,0 +1,79 @@
+name: Morning theme strength
+
+on:
+  schedule:
+    # 10:05 ET in both daylight time (14:05 UTC) and standard time (15:05 UTC).
+    # The "check time" step skips whichever run isn't 10 AM in New York.
+    - cron: "5 14 * * 1-5"
+    - cron: "5 15 * * 1-5"
+  workflow_dispatch: {}   # "Run workflow" button for manual runs
+
+permissions:
+  contents: write   # commit history.json (keeps the Day counter)
+  pages: write
+  id-token: write
+
+concurrency:
+  group: theme-strength
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check time (scheduled runs only)
+        id: gate
+        run: |
+          hour=$(TZ=America/New_York date +%H)
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$hour" != "10" ]; then
+            echo "run=false" >> "$GITHUB_OUTPUT"; echo "Skipping: it is ${hour}:xx in New York, not 10 AM."
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.run == 'true'
+        with:
+          python-version: "3.12"
+
+      - name: Score themes
+        if: steps.gate.outputs.run == 'true'
+        id: score
+        run: |
+          python sector_strength.py
+          session=$(python -c "import json;print(json.load(open('sector_data.json'))['session'])")
+          today=$(TZ=America/New_York date +%Y-%m-%d)
+          if [ "$session" = "$today" ]; then echo "fresh=true" >> "$GITHUB_OUTPUT"; else echo "fresh=false" >> "$GITHUB_OUTPUT"; echo "Market data is from $session, not today (holiday?)."; fi
+          mkdir -p _site && cp dashboard.html _site/index.html && cp sector_data.json _site/
+
+      - name: Save history
+        if: steps.gate.outputs.run == 'true' && steps.score.outputs.fresh == 'true'
+        run: |
+          git config user.name "theme-strength-bot"
+          git config user.email "theme-strength-bot@users.noreply.github.com"
+          git add history.json sector_data.json summary.txt
+          git commit -m "Theme strength $(TZ=America/New_York date +%Y-%m-%d)" || echo "Nothing to commit"
+          git push
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.gate.outputs.run == 'true' && steps.score.outputs.fresh == 'true'
+        with:
+          path: _site
+
+      - uses: actions/deploy-pages@v4
+        id: deploy
+        if: steps.gate.outputs.run == 'true' && steps.score.outputs.fresh == 'true'
+
+      - name: Phone alert (ntfy)
+        if: steps.gate.outputs.run == 'true' && env.NTFY_TOPIC != ''
+        run: |
+          url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          if [ "${{ steps.score.outputs.fresh }}" = "true" ]; then msg=$(head -c 1000 summary.txt); else msg="Theme board not updated: no new market data today (holiday?)."; fi
+          curl -s -H "Title: Theme strength" -H "Tags: chart_with_upwards_trend" -H "Click: $url" -d "$msg" "https://ntfy.sh/$NTFY_TOPIC" > /dev/null

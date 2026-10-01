@@ -1,0 +1,29 @@
+{
+  "benchmark": "SPY",
+  "themes": [
+    {"theme": "PHOTONICS",      "etf": null,   "names": ["COHR", "CIEN", "LITE", "FN", "AAOI", "IPGP", "MKSI"]},
+    {"theme": "CRYPTO BROKERS", "etf": null,   "names": ["COIN", "HOOD", "MSTR", "GLXY"]},
+    {"theme": "ENERGY",         "etf": "XLE",  "names": ["XOM", "CVX", "COP", "EOG", "SLB", "OXY"]},
+    {"theme": "AI DATACENTER",  "etf": null,   "names": ["VRT", "ETN", "NVT", "ANET", "SMCI", "DELL", "CRWV", "NBIS"]},
+    {"theme": "SOFTWARE",       "etf": "IGV",  "names": ["MSFT", "ORCL", "CRM", "NOW", "ADBE", "INTU", "PLTR"]},
+    {"theme": "BITCOIN",        "etf": "IBIT", "names": []},
+    {"theme": "GENOMICS",       "etf": "ARKG", "names": ["CRSP", "NTLA", "BEAM", "TWST", "ILMN"]},
+    {"theme": "SEMIS",          "etf": "SMH",  "names": ["NVDA", "AMD", "AVGO", "MU", "TSM", "AMAT", "LRCX"]},
+    {"theme": "TECH",           "etf": "XLK",  "names": ["AAPL", "MSFT", "NVDA", "AVGO", "ORCL"]},
+    {"theme": "UTILITIES",      "etf": "XLU",  "names": ["NEE", "SO", "DUK", "CEG", "VST"]},
+    {"theme": "SILVER",         "etf": "SLV",  "names": ["PAAS", "AG", "HL"]},
+    {"theme": "GOLD",           "etf": "IAU",  "names": []},
+    {"theme": "CYBER",          "etf": "HACK", "names": ["CRWD", "PANW", "ZS", "FTNT", "NET", "S"]},
+    {"theme": "MAG 7",          "etf": "MAGS", "names": ["AAPL", "MSFT", "NVDA", "AMZN", "GOOGL", "META", "TSLA"]},
+    {"theme": "MEMORY",         "etf": "DRAM", "names": ["MU", "WDC", "STX", "SNDK"]},
+    {"theme": "SPACE",          "etf": "UFO",  "names": ["RKLB", "ASTS", "LUNR", "SPCX", "PL"]},
+    {"theme": "HEALTHCARE",     "etf": "XLV",  "names": ["LLY", "UNH", "JNJ", "ABBV", "MRK"]},
+    {"theme": "BIOTECH",        "etf": "XBI",  "names": ["VRTX", "REGN", "AMGN", "GILD", "ALNY"]},
+    {"theme": "GOLD MINERS",    "etf": "GDX",  "names": ["NEM", "AEM", "KGC", "AU", "WPM"]},
+    {"theme": "CHINA TECH",     "etf": "KWEB", "names": ["BABA", "PDD", "JD", "BIDU"]},
+    {"theme": "REGIONAL BANK",  "etf": "KRE",  "names": ["ZION", "KEY", "CFG", "RF", "HBAN"]},
+    {"theme": "MATERIALS",      "etf": "XLB",  "names": ["LIN", "FCX", "NUE", "SHW", "APD"]},
+    {"theme": "URANIUM",        "etf": "URA",  "names": ["CCJ", "UEC", "NXE", "LEU", "UUUU"]},
+    {"theme": "CRYPTO MINERS",  "etf": "WGMI", "names": ["MARA", "RIOT", "CLSK", "WULF", "CIFR", "IREN", "HUT"]}
+  ]
+}
