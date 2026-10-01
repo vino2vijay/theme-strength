@@ -1,6 +1,6 @@
 {
  "session": "2026-10-01",
- "generated": "2026-10-01 16:20 ET",
+ "generated": "2026-10-01 16:48 ET",
  "data_time": "09:30 ET",
  "spy_chg": 0.18,
  "spy_close": 763.99,
@@ -194,17 +194,17 @@
    "etf": "SMH",
    "theme_chg": 1.45,
    "rs": 1.27,
-   "best": "AMAT",
-   "best_chg": 3.48,
+   "best": "LRCX",
+   "best_chg": 3.53,
    "best_above_open": true,
    "members": [
     {
-     "name": "AMAT",
-     "chg": 3.48
+     "name": "LRCX",
+     "chg": 3.53
     },
     {
-     "name": "LRCX",
-     "chg": 3.46
+     "name": "AMAT",
+     "chg": 3.5
     },
     {
      "name": "MU",
@@ -763,7 +763,7 @@
     },
     {
      "name": "ILMN",
-     "chg": -2.9
+     "chg": -2.91
     }
    ],
    "day": 0,
@@ -796,7 +796,7 @@
     },
     {
      "name": "ALNY",
-     "chg": -6.36
+     "chg": -6.31
     }
    ],
    "day": 0,
