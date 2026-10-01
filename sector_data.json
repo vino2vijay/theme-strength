@@ -1,9 +1,10 @@
 {
  "session": "2026-10-01",
- "generated": "2026-10-01 16:48 ET",
- "data_time": "09:30 ET",
- "spy_chg": 0.18,
- "spy_close": 763.99,
+ "generated": "2026-10-01 17:11 ET",
+ "source": "alpaca",
+ "data_time": "15:59 ET",
+ "spy_chg": 0.23,
+ "spy_close": 764.1,
  "leading": 8,
  "lagging": 6,
  "rules": {
@@ -15,39 +16,39 @@
   {
    "theme": "PHOTONICS",
    "etf": null,
-   "theme_chg": 7.14,
-   "rs": 6.96,
+   "theme_chg": 7.08,
+   "rs": 6.85,
    "best": "COHR",
-   "best_chg": 10.9,
+   "best_chg": 10.99,
    "best_above_open": true,
    "members": [
     {
      "name": "COHR",
-     "chg": 10.9
+     "chg": 10.99
     },
     {
      "name": "AAOI",
-     "chg": 8.12
+     "chg": 8.03
     },
     {
      "name": "CIEN",
-     "chg": 7.77
+     "chg": 7.93
     },
     {
      "name": "LITE",
-     "chg": 7.67
+     "chg": 7.54
     },
     {
      "name": "IPGP",
-     "chg": 6.87
+     "chg": 6.85
     },
     {
      "name": "FN",
-     "chg": 6.4
+     "chg": 6.16
     },
     {
      "name": "MKSI",
-     "chg": 2.22
+     "chg": 2.1
     }
    ],
    "day": 1,
@@ -57,26 +58,26 @@
    "theme": "MEMORY",
    "etf": "DRAM",
    "theme_chg": 2.77,
-   "rs": 2.59,
-   "best": "MU",
-   "best_chg": 3.03,
+   "rs": 2.53,
+   "best": "STX",
+   "best_chg": 2.49,
    "best_above_open": true,
    "members": [
     {
+     "name": "STX",
+     "chg": 2.49
+    },
+    {
      "name": "MU",
-     "chg": 3.03
+     "chg": 2.45
     },
     {
      "name": "SNDK",
-     "chg": 2.75
-    },
-    {
-     "name": "STX",
-     "chg": 2.52
+     "chg": 2.35
     },
     {
      "name": "WDC",
-     "chg": 1.78
+     "chg": 1.34
     }
    ],
    "day": 1,
@@ -85,15 +86,15 @@
   {
    "theme": "ENERGY",
    "etf": "XLE",
-   "theme_chg": 1.95,
-   "rs": 1.77,
+   "theme_chg": 1.97,
+   "rs": 1.74,
    "best": "OXY",
-   "best_chg": 4.56,
+   "best_chg": 4.54,
    "best_above_open": true,
    "members": [
     {
      "name": "OXY",
-     "chg": 4.56
+     "chg": 4.54
     },
     {
      "name": "EOG",
@@ -101,19 +102,19 @@
     },
     {
      "name": "COP",
-     "chg": 1.53
+     "chg": 1.43
     },
     {
      "name": "CVX",
-     "chg": 1.42
+     "chg": 1.34
     },
     {
      "name": "XOM",
-     "chg": 0.66
+     "chg": 0.59
     },
     {
      "name": "SLB",
-     "chg": -0.12
+     "chg": -0.1
     }
    ],
    "day": 1,
@@ -122,68 +123,39 @@
   {
    "theme": "SOFTWARE",
    "etf": "IGV",
-   "theme_chg": 1.64,
-   "rs": 1.47,
+   "theme_chg": 1.63,
+   "rs": 1.4,
    "best": "CRM",
-   "best_chg": 3.1,
+   "best_chg": 3.04,
    "best_above_open": true,
    "members": [
     {
      "name": "CRM",
-     "chg": 3.1
+     "chg": 3.04
     },
     {
      "name": "NOW",
-     "chg": 2.8
+     "chg": 2.76
     },
     {
      "name": "INTU",
-     "chg": 2.56
+     "chg": 2.57
     },
     {
      "name": "PLTR",
-     "chg": 1.6
-    },
-    {
-     "name": "ORCL",
-     "chg": 0.56
+     "chg": 1.55
     },
     {
      "name": "ADBE",
      "chg": 0.56
     },
     {
+     "name": "ORCL",
+     "chg": 0.52
+    },
+    {
      "name": "MSFT",
-     "chg": -0.02
-    }
-   ],
-   "day": 1,
-   "action": "LEADING"
-  },
-  {
-   "theme": "CRYPTO BROKERS",
-   "etf": null,
-   "theme_chg": 1.6,
-   "rs": 1.43,
-   "best": "MSTR",
-   "best_chg": 4.84,
-   "best_above_open": true,
-   "members": [
-    {
-     "name": "MSTR",
-     "chg": 4.84
-    },
-    {
-     "name": "COIN",
-     "chg": 1.54
-    },
-    {
-     "name": "GLXY",
-     "chg": 1.23
-    },
-    {
-     "name": "HOOD",
-     "chg": -1.2
+     "chg": -0.04
     }
    ],
    "day": 1,
@@ -192,39 +164,68 @@
   {
    "theme": "SEMIS",
    "etf": "SMH",
-   "theme_chg": 1.45,
-   "rs": 1.27,
+   "theme_chg": 1.53,
+   "rs": 1.3,
    "best": "LRCX",
-   "best_chg": 3.53,
+   "best_chg": 3.4,
    "best_above_open": true,
    "members": [
     {
      "name": "LRCX",
-     "chg": 3.53
+     "chg": 3.4
     },
     {
      "name": "AMAT",
-     "chg": 3.5
+     "chg": 3.38
     },
     {
      "name": "MU",
-     "chg": 3.03
+     "chg": 2.45
     },
     {
      "name": "NVDA",
-     "chg": 1.09
+     "chg": 1.2
+    },
+    {
+     "name": "AMD",
+     "chg": 0.68
     },
     {
      "name": "TSM",
      "chg": 0.66
     },
     {
-     "name": "AMD",
-     "chg": 0.65
+     "name": "AVGO",
+     "chg": -2.11
+    }
+   ],
+   "day": 1,
+   "action": "LEADING"
+  },
+  {
+   "theme": "CRYPTO BROKERS",
+   "etf": null,
+   "theme_chg": 1.51,
+   "rs": 1.28,
+   "best": "MSTR",
+   "best_chg": 4.48,
+   "best_above_open": true,
+   "members": [
+    {
+     "name": "MSTR",
+     "chg": 4.48
     },
     {
-     "name": "AVGO",
-     "chg": -2.15
+     "name": "COIN",
+     "chg": 1.56
+    },
+    {
+     "name": "GLXY",
+     "chg": 1.19
+    },
+    {
+     "name": "HOOD",
+     "chg": -1.18
     }
    ],
    "day": 1,
@@ -233,15 +234,15 @@
   {
    "theme": "AI DATACENTER",
    "etf": null,
-   "theme_chg": 1.31,
-   "rs": 1.13,
+   "theme_chg": 1.3,
+   "rs": 1.07,
    "best": "NVT",
-   "best_chg": 3.37,
+   "best_chg": 3.53,
    "best_above_open": true,
    "members": [
     {
      "name": "NVT",
-     "chg": 3.37
+     "chg": 3.53
     },
     {
      "name": "SMCI",
@@ -249,27 +250,27 @@
     },
     {
      "name": "VRT",
-     "chg": 1.99
+     "chg": 1.97
     },
     {
      "name": "ETN",
-     "chg": 1.76
+     "chg": 1.82
     },
     {
      "name": "CRWV",
-     "chg": 1.66
+     "chg": 1.71
     },
     {
      "name": "DELL",
-     "chg": 0.7
+     "chg": 0.57
     },
     {
      "name": "ANET",
-     "chg": 0.44
+     "chg": 0.38
     },
     {
      "name": "NBIS",
-     "chg": -1.53
+     "chg": -1.68
     }
    ],
    "day": 1,
@@ -278,10 +279,10 @@
   {
    "theme": "BITCOIN",
    "etf": "IBIT",
-   "theme_chg": 1.31,
-   "rs": 1.13,
+   "theme_chg": 1.25,
+   "rs": 1.02,
    "best": "IBIT",
-   "best_chg": 1.31,
+   "best_chg": 1.25,
    "best_above_open": true,
    "members": [],
    "day": 1,
@@ -290,31 +291,31 @@
   {
    "theme": "TECH",
    "etf": "XLK",
-   "theme_chg": 1.05,
+   "theme_chg": 1.1,
    "rs": 0.87,
    "best": "NVDA",
-   "best_chg": 1.09,
+   "best_chg": 1.2,
    "best_above_open": true,
    "members": [
     {
      "name": "NVDA",
-     "chg": 1.09
+     "chg": 1.2
     },
     {
      "name": "ORCL",
-     "chg": 0.56
+     "chg": 0.52
     },
     {
      "name": "MSFT",
-     "chg": -0.02
+     "chg": -0.04
     },
     {
      "name": "AAPL",
-     "chg": -0.81
+     "chg": -0.83
     },
     {
      "name": "AVGO",
-     "chg": -2.15
+     "chg": -2.11
     }
    ],
    "day": 0,
@@ -323,23 +324,23 @@
   {
    "theme": "SILVER",
    "etf": "SLV",
-   "theme_chg": 0.94,
-   "rs": 0.76,
+   "theme_chg": 0.92,
+   "rs": 0.69,
    "best": "AG",
-   "best_chg": -0.17,
-   "best_above_open": false,
+   "best_chg": -0.06,
+   "best_above_open": true,
    "members": [
     {
      "name": "AG",
-     "chg": -0.17
+     "chg": -0.06
     },
     {
      "name": "HL",
-     "chg": -0.18
+     "chg": -0.15
     },
     {
      "name": "PAAS",
-     "chg": -1.16
+     "chg": -1.2
     }
    ],
    "day": 0,
@@ -348,19 +349,19 @@
   {
    "theme": "REGIONAL BANK",
    "etf": "KRE",
-   "theme_chg": 0.73,
-   "rs": 0.56,
+   "theme_chg": 0.76,
+   "rs": 0.53,
    "best": "RF",
-   "best_chg": 0.3,
+   "best_chg": 0.35,
    "best_above_open": true,
    "members": [
     {
      "name": "RF",
-     "chg": 0.3
+     "chg": 0.35
     },
     {
      "name": "ZION",
-     "chg": 0
+     "chg": -0.02
     },
     {
      "name": "CFG",
@@ -368,11 +369,11 @@
     },
     {
      "name": "KEY",
-     "chg": -0.1
+     "chg": -0.15
     },
     {
      "name": "HBAN",
-     "chg": -0.46
+     "chg": -0.56
     }
    ],
    "day": 0,
@@ -381,31 +382,68 @@
   {
    "theme": "UTILITIES",
    "etf": "XLU",
-   "theme_chg": 0.61,
-   "rs": 0.43,
+   "theme_chg": 0.62,
+   "rs": 0.39,
    "best": "CEG",
-   "best_chg": 1.93,
+   "best_chg": 1.91,
    "best_above_open": false,
    "members": [
     {
      "name": "CEG",
-     "chg": 1.93
+     "chg": 1.91
     },
     {
      "name": "VST",
-     "chg": 1.01
+     "chg": 1.03
     },
     {
      "name": "NEE",
-     "chg": 0.81
+     "chg": 0.8
     },
     {
      "name": "SO",
-     "chg": 0.7
+     "chg": 0.66
     },
     {
      "name": "DUK",
+     "chg": -0.27
+    }
+   ],
+   "day": 0,
+   "action": "QUIET"
+  },
+  {
+   "theme": "CYBER",
+   "etf": "HACK",
+   "theme_chg": 0.55,
+   "rs": 0.32,
+   "best": "S",
+   "best_chg": 3.7,
+   "best_above_open": true,
+   "members": [
+    {
+     "name": "S",
+     "chg": 3.7
+    },
+    {
+     "name": "NET",
+     "chg": 1.16
+    },
+    {
+     "name": "CRWD",
+     "chg": 0.5
+    },
+    {
+     "name": "FTNT",
+     "chg": -0.06
+    },
+    {
+     "name": "ZS",
      "chg": -0.24
+    },
+    {
+     "name": "PANW",
+     "chg": -0.37
     }
    ],
    "day": 0,
@@ -414,80 +452,43 @@
   {
    "theme": "GOLD",
    "etf": "IAU",
-   "theme_chg": 0.47,
-   "rs": 0.3,
+   "theme_chg": 0.46,
+   "rs": 0.23,
    "best": "IAU",
-   "best_chg": 0.47,
+   "best_chg": 0.46,
    "best_above_open": true,
    "members": [],
    "day": 0,
    "action": "QUIET"
   },
   {
-   "theme": "CYBER",
-   "etf": "HACK",
-   "theme_chg": 0.44,
-   "rs": 0.26,
-   "best": "S",
-   "best_chg": 3.83,
-   "best_above_open": true,
-   "members": [
-    {
-     "name": "S",
-     "chg": 3.83
-    },
-    {
-     "name": "NET",
-     "chg": 1.07
-    },
-    {
-     "name": "CRWD",
-     "chg": 0.51
-    },
-    {
-     "name": "FTNT",
-     "chg": -0.02
-    },
-    {
-     "name": "PANW",
-     "chg": -0.27
-    },
-    {
-     "name": "ZS",
-     "chg": -0.32
-    }
-   ],
-   "day": 0,
-   "action": "QUIET"
-  },
-  {
    "theme": "MATERIALS",
    "etf": "XLB",
-   "theme_chg": -0.33,
-   "rs": -0.51,
+   "theme_chg": -0.31,
+   "rs": -0.54,
    "best": "NUE",
-   "best_chg": 0.95,
+   "best_chg": 0.98,
    "best_above_open": true,
    "members": [
     {
      "name": "NUE",
-     "chg": 0.95
+     "chg": 0.98
     },
     {
      "name": "SHW",
-     "chg": -0.77
+     "chg": -0.81
     },
     {
      "name": "FCX",
-     "chg": -1.03
+     "chg": -1.05
     },
     {
      "name": "LIN",
-     "chg": -1.1
+     "chg": -1.13
     },
     {
      "name": "APD",
-     "chg": -1.76
+     "chg": -1.81
     }
    ],
    "day": 0,
@@ -496,23 +497,23 @@
   {
    "theme": "MAG 7",
    "etf": "MAGS",
-   "theme_chg": -0.35,
-   "rs": -0.53,
+   "theme_chg": -0.36,
+   "rs": -0.59,
    "best": "NVDA",
-   "best_chg": 1.09,
+   "best_chg": 1.2,
    "best_above_open": true,
    "members": [
     {
      "name": "NVDA",
-     "chg": 1.09
+     "chg": 1.2
     },
     {
      "name": "META",
-     "chg": 0.1
+     "chg": 0.06
     },
     {
      "name": "MSFT",
-     "chg": -0.02
+     "chg": -0.04
     },
     {
      "name": "TSLA",
@@ -520,15 +521,15 @@
     },
     {
      "name": "AMZN",
-     "chg": -0.37
+     "chg": -0.36
     },
     {
      "name": "AAPL",
-     "chg": -0.81
+     "chg": -0.83
     },
     {
      "name": "GOOGL",
-     "chg": -1.7
+     "chg": -1.66
     }
    ],
    "day": 0,
@@ -537,31 +538,31 @@
   {
    "theme": "URANIUM",
    "etf": "URA",
-   "theme_chg": -0.65,
-   "rs": -0.83,
-   "best": "LEU",
-   "best_chg": -0.27,
-   "best_above_open": true,
+   "theme_chg": -0.64,
+   "rs": -0.87,
+   "best": "UEC",
+   "best_chg": -0.37,
+   "best_above_open": false,
    "members": [
     {
-     "name": "LEU",
-     "chg": -0.27
+     "name": "UEC",
+     "chg": -0.37
     },
     {
-     "name": "UEC",
-     "chg": -0.95
+     "name": "LEU",
+     "chg": -0.38
     },
     {
      "name": "CCJ",
-     "chg": -1.13
+     "chg": -1.14
     },
     {
      "name": "NXE",
-     "chg": -2.74
+     "chg": -2.63
     },
     {
      "name": "UUUU",
-     "chg": -2.9
+     "chg": -2.99
     }
    ],
    "day": 0,
@@ -570,27 +571,27 @@
   {
    "theme": "CHINA TECH",
    "etf": "KWEB",
-   "theme_chg": -0.73,
-   "rs": -0.91,
+   "theme_chg": -0.69,
+   "rs": -0.92,
    "best": "BABA",
-   "best_chg": -0.08,
+   "best_chg": -0.12,
    "best_above_open": false,
    "members": [
     {
      "name": "BABA",
-     "chg": -0.08
+     "chg": -0.12
     },
     {
      "name": "JD",
-     "chg": -0.86
+     "chg": -0.92
     },
     {
      "name": "BIDU",
-     "chg": -1.47
+     "chg": -1.49
     },
     {
      "name": "PDD",
-     "chg": -1.85
+     "chg": -1.93
     }
    ],
    "day": 0,
@@ -599,72 +600,31 @@
   {
    "theme": "SPACE",
    "etf": "UFO",
-   "theme_chg": -0.86,
-   "rs": -1.04,
+   "theme_chg": -0.9,
+   "rs": -1.13,
    "best": "RKLB",
-   "best_chg": 1.12,
+   "best_chg": 1.13,
    "best_above_open": false,
    "members": [
     {
      "name": "RKLB",
-     "chg": 1.12
+     "chg": 1.13
     },
     {
      "name": "LUNR",
-     "chg": -1.33
+     "chg": -1.4
     },
     {
      "name": "PL",
-     "chg": -1.53
+     "chg": -1.65
     },
     {
      "name": "SPCX",
-     "chg": -1.85
+     "chg": -1.8
     },
     {
      "name": "ASTS",
-     "chg": -3.09
-    }
-   ],
-   "day": 0,
-   "action": "WEAK"
-  },
-  {
-   "theme": "CRYPTO MINERS",
-   "etf": "WGMI",
-   "theme_chg": -1.09,
-   "rs": -1.27,
-   "best": "WULF",
-   "best_chg": 0.74,
-   "best_above_open": false,
-   "members": [
-    {
-     "name": "WULF",
-     "chg": 0.74
-    },
-    {
-     "name": "HUT",
-     "chg": 0.3
-    },
-    {
-     "name": "IREN",
-     "chg": -0.56
-    },
-    {
-     "name": "MARA",
-     "chg": -1.06
-    },
-    {
-     "name": "CIFR",
-     "chg": -2.31
-    },
-    {
-     "name": "RIOT",
-     "chg": -2.68
-    },
-    {
-     "name": "CLSK",
-     "chg": -2.8
+     "chg": -3.15
     }
    ],
    "day": 0,
@@ -673,31 +633,72 @@
   {
    "theme": "GOLD MINERS",
    "etf": "GDX",
-   "theme_chg": -1.21,
-   "rs": -1.39,
+   "theme_chg": -1.25,
+   "rs": -1.48,
    "best": "AU",
-   "best_chg": 0.27,
+   "best_chg": 0.22,
    "best_above_open": false,
    "members": [
     {
      "name": "AU",
-     "chg": 0.27
+     "chg": 0.22
     },
     {
      "name": "KGC",
-     "chg": -0.08
+     "chg": -0.12
     },
     {
      "name": "WPM",
-     "chg": -0.22
+     "chg": -0.26
     },
     {
      "name": "NEM",
-     "chg": -0.58
+     "chg": -0.62
     },
     {
      "name": "AEM",
-     "chg": -1.46
+     "chg": -1.52
+    }
+   ],
+   "day": 0,
+   "action": "WEAK"
+  },
+  {
+   "theme": "CRYPTO MINERS",
+   "etf": "WGMI",
+   "theme_chg": -1.24,
+   "rs": -1.48,
+   "best": "WULF",
+   "best_chg": 0.68,
+   "best_above_open": true,
+   "members": [
+    {
+     "name": "WULF",
+     "chg": 0.68
+    },
+    {
+     "name": "HUT",
+     "chg": 0.34
+    },
+    {
+     "name": "IREN",
+     "chg": -0.46
+    },
+    {
+     "name": "MARA",
+     "chg": -0.84
+    },
+    {
+     "name": "CIFR",
+     "chg": -2.28
+    },
+    {
+     "name": "RIOT",
+     "chg": -2.51
+    },
+    {
+     "name": "CLSK",
+     "chg": -2.56
     }
    ],
    "day": 0,
@@ -706,31 +707,31 @@
   {
    "theme": "HEALTHCARE",
    "etf": "XLV",
-   "theme_chg": -1.32,
-   "rs": -1.5,
+   "theme_chg": -1.34,
+   "rs": -1.57,
    "best": "UNH",
-   "best_chg": -0.51,
+   "best_chg": -0.58,
    "best_above_open": false,
    "members": [
     {
      "name": "UNH",
-     "chg": -0.51
-    },
-    {
-     "name": "LLY",
-     "chg": -0.62
+     "chg": -0.58
     },
     {
      "name": "ABBV",
-     "chg": -0.63
+     "chg": -0.73
+    },
+    {
+     "name": "LLY",
+     "chg": -0.76
     },
     {
      "name": "MRK",
-     "chg": -1.03
+     "chg": -1.16
     },
     {
      "name": "JNJ",
-     "chg": -2.3
+     "chg": -2.39
     }
    ],
    "day": 0,
@@ -740,30 +741,30 @@
    "theme": "GENOMICS",
    "etf": "ARKG",
    "theme_chg": -1.94,
-   "rs": -2.11,
+   "rs": -2.17,
    "best": "NTLA",
-   "best_chg": 0.5,
+   "best_chg": 0.66,
    "best_above_open": true,
    "members": [
     {
      "name": "NTLA",
-     "chg": 0.5
+     "chg": 0.66
     },
     {
      "name": "CRSP",
-     "chg": 0.22
+     "chg": 0.23
     },
     {
      "name": "BEAM",
-     "chg": -0.25
+     "chg": -0.16
     },
     {
      "name": "TWST",
-     "chg": -2.69
+     "chg": -2.79
     },
     {
      "name": "ILMN",
-     "chg": -2.91
+     "chg": -2.89
     }
    ],
    "day": 0,
@@ -772,31 +773,31 @@
   {
    "theme": "BIOTECH",
    "etf": "XBI",
-   "theme_chg": -2.01,
-   "rs": -2.19,
+   "theme_chg": -2.0,
+   "rs": -2.23,
    "best": "GILD",
-   "best_chg": -1.04,
+   "best_chg": -1.09,
    "best_above_open": false,
    "members": [
     {
      "name": "GILD",
-     "chg": -1.04
-    },
-    {
-     "name": "VRTX",
-     "chg": -3.07
+     "chg": -1.09
     },
     {
      "name": "REGN",
-     "chg": -3.09
+     "chg": -3.16
+    },
+    {
+     "name": "VRTX",
+     "chg": -3.16
     },
     {
      "name": "AMGN",
-     "chg": -3.38
+     "chg": -3.43
     },
     {
      "name": "ALNY",
-     "chg": -6.31
+     "chg": -6.29
     }
    ],
    "day": 0,
