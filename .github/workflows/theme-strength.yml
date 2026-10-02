@@ -2,10 +2,13 @@ name: Morning theme strength
 
 on:
   schedule:
-    # 9:45 ET in both daylight time (13:45 UTC) and standard time (14:45 UTC).
-    # The "check time" step skips whichever run isn't the 9:45 run in New York.
-    - cron: "45 13 * * 1-5"
-    - cron: "45 14 * * 1-5"
+    # 9:45 ET in daylight time (13:45 UTC) and standard time (14:45 UTC), plus two retries 10 and 20
+    # minutes later because GitHub sometimes delays or drops scheduled runs. The "check time" step
+    # lets only the first run of the day through (9:40-10:39 New York time, board not yet updated).
+    - cron: "45,55 13 * * 1-5"
+    - cron: "5 14 * * 1-5"
+    - cron: "45,55 14 * * 1-5"
+    - cron: "5 15 * * 1-5"
   workflow_dispatch: {}   # "Run workflow" button for manual runs
 
 permissions:
@@ -31,10 +34,13 @@ jobs:
       - name: Check time (scheduled runs only)
         id: gate
         run: |
-          # Accept 9:40-10:39 New York time (GitHub can start scheduled runs late); the other cron lands at 8:45 or 10:45
+          # Scheduled runs: accept 9:40-10:39 New York time, and only if today's board isn't saved yet
           hhmm=$((10#$(TZ=America/New_York date +%H%M)))
+          today=$(TZ=America/New_York date +%Y-%m-%d)
           if [ "${{ github.event_name }}" = "schedule" ] && { [ "$hhmm" -lt 940 ] || [ "$hhmm" -ge 1040 ]; }; then
-            echo "run=false" >> "$GITHUB_OUTPUT"; echo "Skipping: it is $(TZ=America/New_York date +%H:%M) in New York, not the 9:45 run."
+            echo "run=false" >> "$GITHUB_OUTPUT"; echo "Skipping: it is $(TZ=America/New_York date +%H:%M) in New York, outside the morning window."
+          elif [ "${{ github.event_name }}" = "schedule" ] && grep -q "\"$today\"" history.json; then
+            echo "run=false" >> "$GITHUB_OUTPUT"; echo "Skipping: today's board ($today) was already published."
           else
             echo "run=true" >> "$GITHUB_OUTPUT"
           fi
