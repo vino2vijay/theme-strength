@@ -34,11 +34,12 @@ jobs:
       - name: Check time (scheduled runs only)
         id: gate
         run: |
-          # Scheduled runs: accept 9:40-10:39 New York time, and only if today's board isn't saved yet
+          # Scheduled runs: accept 9:40 AM-7:59 PM New York time (GitHub often starts them hours late),
+          # and only if today's board isn't saved yet, so the first run of the day publishes
           hhmm=$((10#$(TZ=America/New_York date +%H%M)))
           today=$(TZ=America/New_York date +%Y-%m-%d)
-          if [ "${{ github.event_name }}" = "schedule" ] && { [ "$hhmm" -lt 940 ] || [ "$hhmm" -ge 1040 ]; }; then
-            echo "run=false" >> "$GITHUB_OUTPUT"; echo "Skipping: it is $(TZ=America/New_York date +%H:%M) in New York, outside the morning window."
+          if [ "${{ github.event_name }}" = "schedule" ] && { [ "$hhmm" -lt 940 ] || [ "$hhmm" -ge 2000 ]; }; then
+            echo "run=false" >> "$GITHUB_OUTPUT"; echo "Skipping: it is $(TZ=America/New_York date +%H:%M) in New York, outside the 9:40-19:59 window."
           elif [ "${{ github.event_name }}" = "schedule" ] && grep -q "\"$today\"" history.json; then
             echo "run=false" >> "$GITHUB_OUTPUT"; echo "Skipping: today's board ($today) was already published."
           else
