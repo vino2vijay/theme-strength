@@ -362,5 +362,31 @@
   "MATERIALS": -0.93,
   "URANIUM": 4.0,
   "CRYPTO MINERS": 10.81
+ },
+ "2026-11-09": {
+  "PHOTONICS": 7.98,
+  "CRYPTO BROKERS": -0.37,
+  "ENERGY": -1.88,
+  "AI DATACENTER": 4.35,
+  "SOFTWARE": 0.31,
+  "BITCOIN": -3.68,
+  "GENOMICS": 3.9,
+  "SEMIS": 2.73,
+  "TECH": 1.32,
+  "UTILITIES": -0.8,
+  "SILVER": 0.31,
+  "GOLD": -0.58,
+  "CYBER": 2.18,
+  "MAG 7": 0.06,
+  "MEMORY": 4.31,
+  "SPACE": 4.22,
+  "HEALTHCARE": -0.43,
+  "BIOTECH": 0.72,
+  "GOLD MINERS": 2.08,
+  "CHINA TECH": -4.67,
+  "REGIONAL BANK": -0.67,
+  "MATERIALS": -0.43,
+  "URANIUM": 3.8,
+  "CRYPTO MINERS": 3.47
  }
 }
